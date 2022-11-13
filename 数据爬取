@@ -1,0 +1,21 @@
+import os
+import re
+
+def get_text_list(flie_path,file_name):
+    text = []
+    with open(os.path.join(flie_path,file_name), "r", encoding="UTF-8") as f:
+            text.append(f.read())
+    return text
+
+def insert_data(data):
+    name=re.findall(r"player_info={\\n(.*)[(]",str(data))
+    if(name):
+        print(name[0])
+    
+if __name__ == '__main__':
+    file_path="D:\data"
+    files = os.listdir(file_path)
+    for file in files:
+        data = []
+        data = get_text_list(file_path,file)
+        insert_data(data)
